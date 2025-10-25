@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Home Control</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="login-page" class="page active">
+  <div id="login-box">
+    <h2>Smart Home Login</h2>
+    <input id="user-id" type="text" placeholder="ID">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+  <div id="logo">Smart Home Server Control Web</div>
+</div>
+
+<!-- MENU PAGE -->
+<div id="menu-page" class="page">
+  <div class="menu-option" onclick="gotoControl()">Online Power System</div>
+</div>
+
+<!-- CONTROL PAGE -->
+<div id="control-page" class="page">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+  <h2>Online Power System</h2>
+  <div id="lamp" class="lamp"></div>
+  <div class="switch-group">
+    <button onclick="turnOn()">Turn ON</button>
+    <button onclick="turnOff()">Turn OFF</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
