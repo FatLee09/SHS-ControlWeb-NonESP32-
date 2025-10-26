@@ -33,17 +33,17 @@ function goBack() {
 
 // --- Adafruit IO Connection ---
 const AIO_USERNAME = "fatlee09";
-const AIO_KEY = "aio_YrXZ34dcLKnfphJyux0KefGBLyLi";
-const FEED_KEY = "led-control";
+const AIO_KEY = "aio_hhBg00C1mJY6f5CsVCs7z1idUXqY";
+const FEED_KEY = "Switch_On";
 
 // Send data to Adafruit IO
 async function sendToAdafruit(value) {
   try {
-    const res = await fetch(`https://io.adafruit.com/api/v2/${fatlee09}/feeds/${led-control}/data`, {
+    const res = await fetch(`https://io.adafruit.com/api/v2/${fatlee09}/feeds/${Switch_On}/data`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-AIO-Key": aio_YrXZ34dcLKnfphJyux0KefGBLyLi
+        "X-AIO-Key": aio_hhBg00C1mJY6f5CsVCs7z1idUXqY
       },
       body: JSON.stringify({ value })
     });
