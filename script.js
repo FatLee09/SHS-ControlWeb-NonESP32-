@@ -1,45 +1,44 @@
+// === LOGIN CONFIG ===
 const ID = "difadli";
 const PASS = "5220711056";
-let currentPage = "login";
 
-function fadeTo(target) {
+// === ADAFRUIT IO CONFIG ===
+const AIO_USERNAME = "fatlee09";   // your username
+const AIO_KEY = "aio_hhBg00C1mJY6f5CsVCs7z1idUXqY";   // your Adafruit IO key
+const FEED_KEY = "switch_on";      // your feed name (create it on io.adafruit.com)
+
+// === PAGE CONTROL ===
+function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  setTimeout(() => {
-    document.getElementById(target).classList.add('active');
-    currentPage = target;
-  }, 300);
+  document.getElementById(pageId).classList.add('active');
 }
 
+// === LOGIN LOGIC ===
 function login() {
-  const user = document.getElementById('user-id').value;
-  const pass = document.getElementById('password').value;
+  const user = document.getElementById("user-id").value;
+  const pass = document.getElementById("password").value;
 
   if (user === ID && pass === PASS) {
-    fadeTo('menu-page');
+    showPage("control-page");
   } else {
-    alert('Invalid ID or Password. Please try again.');
-    document.getElementById('password').value = '';
+    alert("Invalid ID or Password. Try again.");
+    document.getElementById("password").value = "";
   }
 }
 
-function gotoControl() {
-  fadeTo('control-page');
+function logout() {
+  showPage("login-page");
 }
 
-function goBack() {
-  if (currentPage === 'control-page') fadeTo('menu-page');
-  else if (currentPage === 'menu-page') fadeTo('login-page');
-}
+// === CONTROL LOGIC ===
+const lamp = document.getElementById("lamp");
+const statusText = document.getElementById("status");
 
-// --- Adafruit IO Connection ---
-const AIO_USERNAME = "fatlee09";
-const AIO_KEY = "aio_hhBg00C1mJY6f5CsVCs7z1idUXqY";
-const FEED_KEY = "Switch_On";
-
-// Send data to Adafruit IO
 async function sendToAdafruit(value) {
+  const url = `https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${FEED_KEY}/data`;
+
   try {
-    const res = await fetch(`https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${FEED_KEY}/data`, {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,28 +48,23 @@ async function sendToAdafruit(value) {
     });
 
     if (res.ok) {
-      console.log("Sent to Adafruit IO:", value);
+      console.log("✅ Sent:", value);
     } else {
-      console.error("Failed to send:", await res.text());
+      console.error("❌ Failed:", await res.text());
     }
   } catch (err) {
-    console.error("Error sending to Adafruit IO:", err);
+    console.error("⚠️ Network Error:", err);
   }
 }
 
-// Lamp control functions
-const lamp = document.getElementById('lamp');
-
 function turnOn() {
-  lamp.classList.add('on');
-  lamp.style.background = "yellow";
-  console.log("Power System: ON");
+  lamp.classList.add("on");
+  statusText.textContent = "Status: ON";
   sendToAdafruit("ON");
 }
 
 function turnOff() {
-  lamp.classList.remove('on');
-  lamp.style.background = "gray";
-  console.log("Power System: OFF");
+  lamp.classList.remove("on");
+  statusText.textContent = "Status: OFF";
   sendToAdafruit("OFF");
 }
