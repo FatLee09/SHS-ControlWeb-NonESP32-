@@ -4,9 +4,8 @@ const PASS = "5220711056";
 
 // === ADAFRUIT IO CONFIG ===
 const AIO_USERNAME = "fatlee09";   // your username
-const AIO_KEY = "aio_YxWo08LrHjL0f284oI8eDOFy6nuK";   // your Adafruit IO key
+const AIO_KEY = "aio_XCvU79H2odtD0U69ijoFXpPV70b0";   // your Adafruit IO key
 const FEED_KEY = "led-control";      // your feed name (create it on io.adafruit.com)
-const url = `https://io.adafruit.com/fatlee09/feeds/led-control`;
 
 
 // === PAGE CONTROL ===
@@ -14,6 +13,12 @@ function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
 }
+
+async function sendToAdafruit(value) {
+  const url = `https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${FEED_KEY}/data`;
+  ...
+}
+
 
 // === LOGIN LOGIC ===
 function login() {
