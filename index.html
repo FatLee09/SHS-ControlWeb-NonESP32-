@@ -3,34 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Power System</title>
+  <title>Smart Home Control</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- LOGIN PAGE -->
-  <div id="login-page" class="page active">
-    <div class="container">
-      <h1>Login</h1>
-      <input type="text" id="user-id" placeholder="User ID">
-      <input type="password" id="password" placeholder="Password">
-      <button onclick="login()">Login</button>
-    </div>
-  </div>
 
-  <!-- CONTROL PAGE -->
-  <div id="control-page" class="page">
-    <div class="container">
-      <h1>Smart Power System</h1>
-      <div id="lamp" class="lamp"></div>
-      <div class="buttons">
-        <button onclick="turnOn()">Turn ON</button>
-        <button onclick="turnOff()">Turn OFF</button>
-      </div>
-      <p id="status">Status: OFF</p>
-      <button class="back" onclick="logout()">Logout</button>
-    </div>
+<!-- LOGIN PAGE -->
+<div id="login-page" class="page active">
+  <div id="login-box">
+    <h2>Smart Home Login</h2>
+    <input id="user-id" type="text" placeholder="ID">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- CONTROL PAGE -->
+<div id="control-page" class="page">
+  <button class="back-btn" onclick="logout()">← Logout</button>
+  <h2>Online Power System</h2>
+  <div id="lamp" class="lamp"></div>
+  <p id="status">Status: OFF</p>
+  <div class="switch-group">
+    <button onclick="turnOn()">Turn ON</button>
+    <button onclick="turnOff()">Turn OFF</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
