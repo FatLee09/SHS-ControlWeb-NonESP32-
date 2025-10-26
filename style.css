@@ -1,13 +1,8 @@
-* {
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background: #0d1117;
-  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,73 +11,39 @@ body {
 
 .page {
   display: none;
-  width: 100%;
 }
 
 .page.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
 }
 
-.container {
-  background: #161b22;
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
-  width: 300px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: none;
+#login-box {
+  background: #fff;
+  padding: 20px;
   border-radius: 8px;
-  outline: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-button {
-  background: #238636;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  margin: 10px 5px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #2ea043;
-}
-
-button.back {
-  background: #da3633;
-}
-
-button.back:hover {
-  background: #f85149;
+#login-box input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
 }
 
 .lamp {
-  width: 120px;
-  height: 120px;
+  width: 50px;
+  height: 50px;
   background: gray;
   border-radius: 50%;
   margin: 20px auto;
-  transition: background 0.3s ease;
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
-.lamp.on {
-  background: yellow;
-  box-shadow: 0 0 30px 10px yellow;
+.switch-group button {
+  padding: 10px 20px;
+  margin: 5px;
 }
 
-#status {
-  margin-top: 10px;
-  font-size: 18px;
+.back-btn {
+  margin-bottom: 10px;
 }
