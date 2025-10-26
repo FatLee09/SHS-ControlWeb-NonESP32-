@@ -39,11 +39,11 @@ const FEED_KEY = "Switch_On";
 // Send data to Adafruit IO
 async function sendToAdafruit(value) {
   try {
-    const res = await fetch(`https://io.adafruit.com/api/v2/${fatlee09}/feeds/${Switch_On}/data`, {
+    const res = await fetch(`https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${FEED_KEY}/data`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-AIO-Key": aio_hhBg00C1mJY6f5CsVCs7z1idUXqY
+        "X-AIO-Key": AIO_KEY
       },
       body: JSON.stringify({ value })
     });
