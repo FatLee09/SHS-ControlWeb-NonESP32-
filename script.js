@@ -4,8 +4,10 @@ const PASS = "5220711056";
 
 // === ADAFRUIT IO CONFIG ===
 const AIO_USERNAME = "fatlee09";   // your username
-const AIO_KEY = "aio_hhBg00C1mJY6f5CsVCs7z1idUXqY";   // your Adafruit IO key
-const FEED_KEY = "switch_on";      // your feed name (create it on io.adafruit.com)
+const AIO_KEY = "aio_YxWo08LrHjL0f284oI8eDOFy6nuK";   // your Adafruit IO key
+const FEED_KEY = "led-control";      // your feed name (create it on io.adafruit.com)
+const url = `https://io.adafruit.com/fatlee09/feeds/led-control`;
+
 
 // === PAGE CONTROL ===
 function showPage(pageId) {
