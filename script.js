@@ -4,7 +4,7 @@ const PASS = "5220711056";
 
 // === ADAFRUIT IO CONFIG ===
 const AIO_USERNAME = "fatlee09";   // your Adafruit IO username
-const AIO_KEY = "aio_XCvU79H2odtD0U69ijoFXpPV70b0"; // your active key
+const AIO_KEY = "aio_cTpW72YFW2K40uxJH7EVR6QCgsU3"; // your active key
 const FEED_KEY = "led-control";    // your feed key
 
 // === PAGE CONTROL ===
@@ -36,7 +36,7 @@ const statusText = document.getElementById("status");
 
 // Send ON/OFF to Adafruit IO
 async function sendToAdafruit(value) {
-  const url = `https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${FEED_KEY}/data`;
+  const url = `https://io.adafruit.com/api/v2/fatlee09/feeds/led-control`;
 
   try {
     const res = await fetch(url, {
