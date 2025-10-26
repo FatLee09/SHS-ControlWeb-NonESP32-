@@ -31,50 +31,46 @@ function goBack() {
   else if (currentPage === 'menu-page') fadeTo('login-page');
 }
 
-const lamp = document.getElementById('lamp');
-function turnOn() {
-  lamp.classList.add('on');
-  console.log("Power System: ON");
-}
-function turnOff() {
-  lamp.classList.remove('on');
-  console.log("Power System: OFF");
-}
-
-//THE CONNECTION ADAFRUIT IO TO WEBSITE
-// Replace with your actual Adafruit IO username and key
+// --- Adafruit IO Connection ---
 const AIO_USERNAME = "fatlee09";
 const AIO_KEY = "aio_VpqM97AFn2xiRnMFpct3RGz1mpWi";
-const FEED_KEY = "led-control"; // name of your Adafruit IO feed
+const FEED_KEY = "led-control";
 
-// Turn ON the lamp (send data = "ON")
-async function turnOn() {
-  await fetch(`https://io.adafruit.com/api/v2/${fatlee09}/feeds/${led-control}/data`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-AIO-Key": aio_VpqM97AFn2xiRnMFpct3RGz1mpWi
-    },
-    body: JSON.stringify({ value: "ON" })
-  });
-  document.getElementById("lamp").style.background = "yellow";
+// Send data to Adafruit IO
+async function sendToAdafruit(value) {
+  try {
+    const res = await fetch(`https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${FEED_KEY}/data`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-AIO-Key": AIO_KEY
+      },
+      body: JSON.stringify({ value })
+    });
+
+    if (res.ok) {
+      console.log("Sent to Adafruit IO:", value);
+    } else {
+      console.error("Failed to send:", await res.text());
+    }
+  } catch (err) {
+    console.error("Error sending to Adafruit IO:", err);
+  }
 }
 
-// Turn OFF the lamp (send data = "OFF")
-async function turnOff() {
-  await fetch(`https://io.adafruit.com/api/v2/${fatlee09}/feeds/${led-control}/data`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-AIO-Key": aio_VpqM97AFn2xiRnMFpct3RGz1mpWi
-    },
-    body: JSON.stringify({ value: "OFF" })
-  });
-  document.getElementById("lamp").style.background = "gray";
+// Lamp control functions
+const lamp = document.getElementById('lamp');
+
+function turnOn() {
+  lamp.classList.add('on');
+  lamp.style.background = "yellow";
+  console.log("Power System: ON");
+  sendToAdafruit("ON");
 }
 
-// Get current lamp status (optional refresh)
-  const data = await res.json();
-  const lamp = document.getElementById("lamp");
-  lamp.style.background = data.value === "ON" ? "yellow" : "gray";
+function turnOff() {
+  lamp.classList.remove('on');
+  lamp.style.background = "gray";
+  console.log("Power System: OFF");
+  sendToAdafruit("OFF");
 }
