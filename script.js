@@ -4,7 +4,6 @@ const PASS = "5220711056";
 
 // === ADAFRUIT IO CONFIG ===
 const AIO_USERNAME = "fatlee09";   // your Adafruit IO username
-const AIO_KEY = "aio_cTpW72YFW2K40uxJH7EVR6QCgsU3"; // your active key
 const FEED_KEY = "led-control";    // your feed key
 
 // === PAGE CONTROL ===
@@ -34,22 +33,22 @@ function logout() {
 const lamp = document.getElementById("lamp");
 const statusText = document.getElementById("status");
 
-// Send ON/OFF to Adafruit IO
+// Send ON/OFF to Adafruit IO via Webhook
 async function sendToAdafruit(value) {
-  const url = `https://io.adafruit.com/api/v2/fatlee09/feeds/led-control`;
+  // ⚠️ Replace the URL below with your actual Adafruit Webhook URL
+  const url = "https://io.adafruit.com/api/v2/webhooks/feed/6zpGhmcsr5sd2zS6PWBAKhJZ3Epbh";  
 
   try {
     const res = await fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "X-AIO-Key": AIO_KEY
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({ value })
     });
 
     if (res.ok) {
-      console.log("✅ Sent:", value);
+      console.log("✅ Sent via Webhook:", value);
     } else {
       console.error("❌ Failed:", await res.text());
     }
