@@ -3,9 +3,9 @@ const ID = "difadli";
 const PASS = "5220711056";
 
 // === ADAFRUIT IO CONFIG ===
-const AIO_USERNAME = "fatlee09";   // your username
-const AIO_KEY = "aio_XCvU79H2odtD0U69ijoFXpPV70b0";   // your Adafruit IO key
-const FEED_KEY = "led-control";      // your feed name (from Adafruit IO)
+const AIO_USERNAME = "fatlee09";   // your Adafruit IO username
+const AIO_KEY = "aio_XCvU79H2odtD0U69ijoFXpPV70b0"; // your active key
+const FEED_KEY = "led-control";    // your feed key
 
 // === PAGE CONTROL ===
 function showPage(pageId) {
@@ -34,7 +34,7 @@ function logout() {
 const lamp = document.getElementById("lamp");
 const statusText = document.getElementById("status");
 
-// Send data to Adafruit IO
+// Send ON/OFF to Adafruit IO
 async function sendToAdafruit(value) {
   const url = `https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${FEED_KEY}/data`;
 
@@ -58,17 +58,16 @@ async function sendToAdafruit(value) {
   }
 }
 
-// Lamp ON/OFF
 function turnOn() {
-  if (!lamp) return;
   lamp.classList.add("on");
+  lamp.style.background = "yellow";
   statusText.textContent = "Status: ON";
   sendToAdafruit("ON");
 }
 
 function turnOff() {
-  if (!lamp) return;
   lamp.classList.remove("on");
+  lamp.style.background = "gray";
   statusText.textContent = "Status: OFF";
   sendToAdafruit("OFF");
 }
